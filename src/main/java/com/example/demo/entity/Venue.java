@@ -29,5 +29,4 @@ public class Venue {
     // Reference to the foreign key in Events
     @OneToMany(mappedBy = "venue", cascade = CascadeType.ALL)
     private List<Event> events;
-
 }

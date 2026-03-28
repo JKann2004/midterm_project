@@ -6,24 +6,26 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name="TicketType")
+@Table(name="ticket_type")
 @Data
 public class TicketType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ticket_type_id;
+    @Column(name = "ticketTypeId")
+    private Integer ticketTypeId;
 
     private String name;
 
     @Column(nullable = false)
     private Double price;
+
     private Integer quantity_available;
 
     // Foreign Key
     @ManyToOne
-    @JoinColumn(name = "event_id")
-    private Event event_id;
+    @JoinColumn(name = "eventId", nullable = false)
+    private Event event;
 
-    @OneToMany(mappedBy = "ticket_type", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ticketType", cascade = CascadeType.ALL)
     private List<Booking> bookings;
 }

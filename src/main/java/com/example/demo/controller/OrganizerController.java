@@ -14,11 +14,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/organizers")
 public class OrganizerController {
-    private List<Organizer> organizers = new ArrayList<>();
+    @Autowired
+    private TicketService ticketService;
 
     // Create a new organizer, POST
-    @PostMapping("/api/organizers")
+    @PostMapping
     public Organizer create(@RequestBody Organizer organizer) {
-        return TicketService.createOrganizer(organizer);
+        return ticketService.createOrganizer(organizer);
     }
 }

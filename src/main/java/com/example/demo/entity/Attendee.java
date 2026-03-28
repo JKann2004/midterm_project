@@ -6,17 +6,18 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name="Attendee")
+@Table(name="attendee")
 @Data
 public class Attendee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer attendee_id;
+    @Column(name = "attendeeId")
+    private Integer attendeeId;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @OneToMany(mappedBy = "attendee", cascade = CascadeType.ALL)

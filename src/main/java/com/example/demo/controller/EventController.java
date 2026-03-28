@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Event;
 import com.example.demo.service.TicketService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,24 +12,29 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/events")
 public class EventController {
-    private List<Event> events = new ArrayList<>();
-
+    @Autowired
+    private TicketService ticketService;
 
     // Create a new event, POST
-    @PostMapping("/api/events")
+    @PostMapping
     public Event create(@RequestBody Event event) {
-        return TicketService.createEvent(event);
+        return ticketService.createEvent(event);
     }
 
     // List all upcoming events, GET
-    @GetMapping("/api/events")
+    @GetMapping
     public List<Event> listAllEvents() {
-        return TicketService.getAllEvents();
+        return ticketService.getAllEvents();
     }
 
     // Get event details with ticket types, GET
-    @GetMapping("/api/events/{id}")
-    public Optional<Event> getDetails(@RequestBody Integer id) {
-        return TicketService.getEventDetails(id);
+    @GetMapping("/{id}")
+    public Event getDetails(@PathVariable Integer id) {
+        return ticketService.getEventDetails(id);
+    }
+
+    @GetMapping("/{id}/revenue")
+    public Double getRevenue(@PathVariable Integer id) {
+        return ticketService.calculateRevenue(id);
     }
 }

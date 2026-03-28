@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class EventResponseDTO {
     private String event_details;
-    private List<String> ticket_type;
+    private List<TicketTypeDTO> ticket_type;
     private String organizer_name;
     private String venue_name;
 }

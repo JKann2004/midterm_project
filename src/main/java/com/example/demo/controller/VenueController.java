@@ -15,11 +15,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/venues")
 public class VenueController {
-    private List<Venue> venues = new ArrayList<>();
+    @Autowired
+    private TicketService ticketService;
 
     // Create a new venue, POST
-    @PostMapping("/api/venue")
+    @PostMapping
     public Venue create(@RequestBody Venue venue) {
-        return TicketService.createVenue(venue);
+        return ticketService.createVenue(venue);
     }
 }

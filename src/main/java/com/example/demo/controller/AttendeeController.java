@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.BookingResponseDTO;
 import com.example.demo.entity.Attendee;
 import com.example.demo.entity.Booking;
 import com.example.demo.service.TicketService;
@@ -12,23 +13,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/attendee")
 public class AttendeeController {
-    private List<Attendee> attendees = new ArrayList<>();
-
-    private Long nextId = 1L;
-
-    public AttendeeController() {
-        attendees.add(new Attendee());
-    }
+    @Autowired
+    private TicketService ticketService;
 
     // Register new attendee, POST
-    @PostMapping("/api/attendees")
+    @PostMapping
     public Attendee create(@RequestBody Attendee attendee) {
-        return TicketService.createAttendee(attendee);
+        return ticketService.createAttendee(attendee);
     }
 
     // Get all bookings for an attendee, GET
-    @GetMapping("/api/attendees/{id}/bookings")
-    public List<Attendee> getBookingsByAttendee(@RequestBody Integer id) {
-        return TicketService.getAllBookings(id);
+    @GetMapping("/{id}/bookings")
+    public List<BookingResponseDTO> getBookingsByAttendee(@PathVariable Integer id) {
+        return ticketService.getBookingsByAttendee(id);
     }
 }

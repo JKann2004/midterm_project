@@ -6,30 +6,30 @@ import lombok.Data;
 import java.util.Date;
 
 @Entity
-@Table(name="Booking")
+@Table(name="booking")
 @Data
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer booking_id;
+    @Column(name = "bookingId")
+    private Integer bookingId;
 
     private String booking_reference;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date booking_date;
-    @Enumerated
+
+    @Enumerated(EnumType.STRING)
     private PaymentStatus payment_status;
 
     // Foreign Keys
     @ManyToOne
-    @JoinColumn(name = "attendee_id")
-    private Attendee attendee_id;
+    @JoinColumn(name = "attendeeId", nullable = false)
+    private Attendee attendee;
 
     @ManyToOne
-    @JoinColumn(name = "ticket_type_id")
-    private TicketType ticket_type_id;
+    @JoinColumn(name = "ticketTypeId", nullable = false)
+    private TicketType ticketType;
 
 }
-enum PaymentStatus {
-    PENDING,
-    CONFIRMED,
-    CANCELLED
-}
+

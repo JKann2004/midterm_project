@@ -6,12 +6,13 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name="Organizer")
+@Table(name="organizer")
 @Data
 public class Organizer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer organizer;
+    @Column(name = "organizerId")
+    private Integer organizerId;
 
     @Column(nullable = false)
     private String name;

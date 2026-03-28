@@ -8,12 +8,13 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Event")
+@Table(name = "event")
 @Data
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer event_id;
+    @Column(name = "eventId")
+    private Integer eventId;
 
     @Column(nullable = false)
     private String title;
@@ -28,22 +29,16 @@ public class Event {
 
     // Foreign Keys
     @ManyToOne
-    @JoinColumn(name = "organizer_id")
-    private Organizer organizer_id;
+    @JoinColumn(name = "organizerId", nullable = false)
+    private Organizer organizer;
 
     @ManyToOne
-    @JoinColumn(name = "venue_id")
-    private Venue venue_id;
+    @JoinColumn(name = "venueId", nullable = false)
+    private Venue venue;
 
     // Reference to the foreign key in Events
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
-    private List<TicketType> ticket_type;
+    private List<TicketType> ticketTypes;
 
 }
 
-enum Status {
-    UPCOMING,
-    ONGOING,
-    CANCELLED,
-    COMPLETED
-}

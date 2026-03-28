@@ -1,4 +1,5 @@
 Name: Jaylynna Kann
+
 CWID: 885860361
 
 Attempt to create a new organizer

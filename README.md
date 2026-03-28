@@ -1,3 +1,6 @@
+Name: Jaylynna Kann
+CWID: 885860361
+
 Attempt to create a new organizer
 <img width="1278" height="957" alt="Screenshot 2026-03-27 192924" src="https://github.com/user-attachments/assets/8619279a-b6e6-439a-8df6-0979ccf0b67a" />
 

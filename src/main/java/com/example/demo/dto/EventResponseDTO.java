@@ -8,14 +8,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventResponseDTO {
-    private String event_details;
-    private List<TicketTypeDTO> ticket_type;
+    private Integer eventId;
+    private String title;
+    private String description;
+    private Date event_date;
+    private String status;
     private String organizer_name;
     private String venue_name;
+    private List<TicketTypeDTO> ticketTypes;
 }
+

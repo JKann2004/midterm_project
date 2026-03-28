@@ -42,9 +42,18 @@ public class TicketService {
     }
 
     // Create a new event
-    public Event createEvent(Event event) {
+    @Transactional
+    public Event createEvent(Event event, Integer organizerId, Integer venueId) {
+        Organizer organizer = organizerRepository.findById(organizerId)
+                .orElseThrow(() -> new RuntimeException("Organizer not found"));
+        Venue venue = venueRepository.findById(venueId)
+                .orElseThrow(() -> new RuntimeException("Venue not found"));
+        event.setOrganizer(organizer);
+        event.setVenue(venue);
+
         return eventRepository.save(event);
     }
+
 
     // List all upcoming events
     public List<Event> getAllEvents() {

@@ -17,9 +17,12 @@ public class EventController {
 
     // Create a new event, POST
     @PostMapping
-    public Event create(@RequestBody Event event) {
-        return ticketService.createEvent(event);
+    public Event create(@RequestBody Event event,
+                        @RequestParam Integer organizerId,
+                        @RequestParam Integer venueId) {
+        return ticketService.createEvent(event, organizerId, venueId);
     }
+
 
     // List all upcoming events, GET
     @GetMapping
